@@ -1,0 +1,11 @@
+/* styles.css o tu archivo de estilos */
+.navbar-scrolled {
+    background: rgba(18, 18, 18, 1); /* Color de fondo con 100% de opacidad */
+    transition: background 0.3s ease; /* Añade una transición suave */
+  }
+  
+  .navbar-no-scrolled {
+    background: rgba(18, 18, 18, 0.1); /* Color de fondo con 30% de opacidad */
+    transition: background 0.3s ease; /* Añade una transición suave */
+  }
+  
