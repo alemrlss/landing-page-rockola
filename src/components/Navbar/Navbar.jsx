@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import { AiFillAlert } from "react-icons/ai";
+import { TiThMenu } from "react-icons/ti";
+
 import { motion } from "framer-motion";
 import "./Navbar.css";
+import MenuMobile from "./MenuMobile";
+import MenuOverlay from "./MenuOverlay";
 
 function Navbar() {
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -87,19 +91,26 @@ function Navbar() {
               onClick={() => setNavbarOpen(true)}
               className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"
             >
-              <AiFillAlert className="h-5 w-5" />
+              <TiThMenu className="h-5 w-5" />
             </button>
           ) : (
             <button
               onClick={() => setNavbarOpen(false)}
               className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"
             >
-              <AiFillAlert className="h-5 w-5" />
+              <TiThMenu className="h-5 w-5" />
             </button>
           )}
         </div>
       </div>
-      {navbarOpen ? <AiFillAlert links={navLinks} /> : null}
+      {navbarOpen ? (
+        <MenuOverlay
+          links={navLinks}
+          onClose={() => {
+            setNavbarOpen(!navbarOpen);
+          }}
+        />
+      ) : null}{" "}
     </motion.nav>
   );
 }

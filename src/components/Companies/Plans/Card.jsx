@@ -68,7 +68,10 @@ function CardSubscription({ membership, onClick, setMembership, icon }) {
         <div className="mt-6 space-y-2 flex flex-col">
           <div className="mb-4 flex justify-start items-center space-x-2">
             <FaCheck className="text-green-500" />
-            <p>{getBenefits().sales} Dispositivo de venta</p>
+            <p>
+              {getBenefits().sales}{" "}
+              {getBenefits().sales === "1" ? "Cuenta" : "Cuentas"} para venta
+            </p>
           </div>
           <div className="mb-4 flex justify-start items-center space-x-2">
             <FaCheck className="text-green-500" />

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import api from "../../api/api";
 import { FaUserPlus } from "react-icons/fa"; // Importa el icono de usuario
-import { parse } from "postcss";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function FormCompanies({
   formVariants,
@@ -31,13 +31,23 @@ function FormCompanies({
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const handleTogglePassword = (passwordType) => {
+    if (passwordType === "password") {
+      setShowPassword(!showPassword);
+    } else if (passwordType === "confirmPassword") {
+      setShowConfirmPassword(!showConfirmPassword);
+    }
+  };
+
   const handleInputChange = async (e) => {
     const { name, value } = e.target;
     setError("");
     setSuccess("");
 
     const updatedErrors = { ...errors };
-    console.log(name);
     if (name === "password" || name === "confirmPassword") {
       delete updatedErrors["password"];
       delete updatedErrors["confirmPassword"];
@@ -86,42 +96,39 @@ function FormCompanies({
 
     const newErrors = {};
 
-    // Validar que los campos no estén vacíos
-    if (!formData.name.trim()) {
-      newErrors.name = "El nombre es obligatorio";
-    }
-    if (!formData.ruc.trim()) {
-      newErrors.ruc = "El Apellido es obligatorio";
-    }
-    if (!formData.email.trim()) {
-      newErrors.email = "El Correo Electronico es obligatorio";
-    }
-    if (!formData.phone.trim()) {
-      newErrors.phone = "El Numero de Telefono es obligatorio";
-    }
-    if (!formData.password.trim()) {
-      newErrors.password = "La Contraseña es obligatorio";
-    }
-    if (!formData.confirmPassword.trim()) {
-      newErrors.confirmPassword = "La Contraseña es obligatorio";
-    }
-    if (!formData.address.trim()) {
-      newErrors.address = "La Direccion es obligatorio";
-    }
+    const validateField = (fieldName, label) => {
+      if (!formData[fieldName].trim()) {
+        newErrors[fieldName] = `El ${label} es obligatorio`;
+      } else {
+        if (formData.password.length < 8) {
+          newErrors.password = "La contraseña debe tener 8 caracteres o más";
+        }
+        if (formData.phone.length < 13) {
+          newErrors.phone = "El número de teléfono debe tener 13 dígitos";
+        }
+        if (formData.ruc.length < 13) {
+          newErrors.ruc = "El RUC debe tener 13 dígitos";
+        }
+        if (formData.postalCode.length < 4) {
+          newErrors.postalCode = "El código postal debe tener 4 dígitos";
+        }
+        if (formData.name.length < 13) {
+          newErrors.name = "El nombre debe tener 13 caracteres";
+        }
+      }
+    };
 
-    if (!formData.postalCode.trim()) {
-      newErrors.postalCode = "El Codigo Postal es obligatorio";
-    }
-
-    if (!formData.countryId.trim()) {
-      newErrors.countryId = "El Pais es obligatorio";
-    }
-    if (!formData.stateId.trim()) {
-      newErrors.stateId = "El Estado es obligatorio";
-    }
-    if (!formData.cityId.trim()) {
-      newErrors.cityId = "La Ciudad es obligatorio";
-    }
+    validateField("name", "Nombre");
+    validateField("ruc", "RUC");
+    validateField("email", "Correo Electrónico");
+    validateField("phone", "Número de Teléfono");
+    validateField("password", "Contraseña");
+    validateField("confirmPassword", "Confirmar Contraseña");
+    validateField("address", "Dirección");
+    validateField("postalCode", "Código Postal");
+    validateField("countryId", "País");
+    validateField("stateId", "Estado");
+    validateField("cityId", "Ciudad");
 
     // Validar que las contraseñas coincidan
     if (formData.password !== formData.confirmPassword) {
@@ -311,19 +318,31 @@ function FormCompanies({
           <label htmlFor="password" className="block text-sm font-bold">
             Contraseña
           </label>
-          <input
-            type="password"
-            name="password"
-            placeholder="Contraseña"
-            className={`p-3 rounded-md text-black border-2 w-full ${
-              errors.password
-                ? "border-red-500"
-                : "border-gray-300 focus:border-blue-500"
-            }`}
-            value={formData.password}
-            onChange={handleInputChange}
-            required
-          />
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Contraseña"
+              className={`p-3 rounded-md text-black border-2 w-full ${
+                errors.password
+                  ? "border-red-500"
+                  : "border-gray-300 focus:border-blue-500"
+              }`}
+              value={formData.password}
+              onChange={handleInputChange}
+              required
+            />
+            <div
+              className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+              onClick={() => handleTogglePassword("password")}
+            >
+              {showPassword ? (
+                <FaEyeSlash className="text-black" />
+              ) : (
+                <FaEye className="text-black" />
+              )}
+            </div>
+          </div>
           {errors.password && (
             <div className="text-red-500 text-sm">{errors.password}</div>
           )}
@@ -333,19 +352,34 @@ function FormCompanies({
           <label htmlFor="confirmPassword" className="block text-sm font-bold">
             Confirmar Contraseña
           </label>
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirmar Contraseña"
-            className={`p-3 rounded-md text-black border-2 w-full ${
-              errors.confirmPassword
-                ? "border-red-500"
-                : "border-gray-300 focus:border-blue-500"
-            }`}
-            value={formData.confirmPassword}
-            onChange={handleInputChange}
-            required
-          />
+          <div className="relative">
+            <input
+              type={showConfirmPassword ? "text" : "password"}
+              name="confirmPassword"
+              placeholder="Confirmar Contraseña"
+              className={`p-3 rounded-md text-black border-2 w-full ${
+                errors.confirmPassword
+                  ? "border-red-500"
+                  : "border-gray-300 focus:border-blue-500"
+              }`}
+              value={formData.confirmPassword}
+              onChange={handleInputChange}
+              required
+            />
+            <div
+              className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+              onClick={() => handleTogglePassword("confirmPassword")}
+            >
+              {showConfirmPassword ? (
+                <FaEyeSlash className="text-black" />
+              ) : (
+                <FaEye className="text-black" />
+              )}{" "}
+            </div>
+          </div>
+          {errors.confirmPassword && (
+            <div className="text-red-500 text-sm">{errors.confirmPassword}</div>
+          )}
         </div>
       </div>
       <div className="flex space-x-2">

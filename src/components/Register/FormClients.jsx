@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import api from "../../api/api";
-import { FaUserPlus } from "react-icons/fa"; // Importa el icono de usuario
+import { FaUserPlus, FaEye, FaEyeSlash } from "react-icons/fa";
 import { parse } from "postcss";
 
 function FormClients({
@@ -31,6 +31,17 @@ function FormClients({
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const handleTogglePassword = (passwordType) => {
+    if (passwordType === "password") {
+      setShowPassword(!showPassword);
+    } else if (passwordType === "confirmPassword") {
+      setShowConfirmPassword(!showConfirmPassword);
+    }
+  };
 
   const handleInputChange = async (e) => {
     const { name, value } = e.target;
@@ -311,24 +322,35 @@ function FormClients({
             <div className="text-red-500 text-sm">{errors.phone}</div>
           )}
         </div>
-
         <div className="mb-2">
           <label htmlFor="password" className="block text-sm font-bold">
             Contraseña
           </label>
-          <input
-            type="password"
-            name="password"
-            placeholder="Contraseña"
-            className={`p-3 rounded-md text-black border-2 w-full ${
-              errors.password
-                ? "border-red-500"
-                : "border-gray-300 focus:border-blue-500"
-            }`}
-            value={formData.password}
-            onChange={handleInputChange}
-            required
-          />
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Contraseña"
+              className={`p-3 rounded-md text-black border-2 w-full ${
+                errors.password
+                  ? "border-red-500"
+                  : "border-gray-300 focus:border-blue-500"
+              }`}
+              value={formData.password}
+              onChange={handleInputChange}
+              required
+            />
+            <div
+              className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+              onClick={() => handleTogglePassword("password")}
+            >
+              {showPassword ? (
+                <FaEyeSlash className="text-black" />
+              ) : (
+                <FaEye className="text-black" />
+              )}
+            </div>
+          </div>
           {errors.password && (
             <div className="text-red-500 text-sm">{errors.password}</div>
           )}
@@ -338,19 +360,34 @@ function FormClients({
           <label htmlFor="confirmPassword" className="block text-sm font-bold">
             Confirmar Contraseña
           </label>
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirmar Contraseña"
-            className={`p-3 rounded-md text-black border-2 w-full ${
-              errors.confirmPassword
-                ? "border-red-500"
-                : "border-gray-300 focus:border-blue-500"
-            }`}
-            value={formData.confirmPassword}
-            onChange={handleInputChange}
-            required
-          />
+          <div className="relative">
+            <input
+              type={showConfirmPassword ? "text" : "password"}
+              name="confirmPassword"
+              placeholder="Confirmar Contraseña"
+              className={`p-3 rounded-md text-black border-2 w-full ${
+                errors.confirmPassword
+                  ? "border-red-500"
+                  : "border-gray-300 focus:border-blue-500"
+              }`}
+              value={formData.confirmPassword}
+              onChange={handleInputChange}
+              required
+            />
+            <div
+              className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+              onClick={() => handleTogglePassword("confirmPassword")}
+            >
+              {showConfirmPassword ? (
+                <FaEyeSlash className="text-black" />
+              ) : (
+                <FaEye className="text-black" />
+              )}{" "}
+            </div>
+          </div>
+          {errors.confirmPassword && (
+            <div className="text-red-500 text-sm">{errors.confirmPassword}</div>
+          )}
         </div>
       </div>
       <div className="flex space-x-2">
@@ -399,7 +436,7 @@ function FormClients({
         </div>
       </div>
       <div className="mb-2">
-        <label htmlFor="password" className="block text-sm font-bold">
+        <label htmlFor="birthDate" className="block text-sm font-bold">
           Fecha de nacimiento
         </label>
         <input
