@@ -87,7 +87,7 @@ function CardSubscription({ membership, onClick, setMembership, icon }) {
           </div>
         </div>
         <motion.button
-          className="w-full bg-white mt-4 rounded-full hover:bg-gray-200 text-black py-2 px-4 transition-all duration-300 transform hover:scale-105"
+          className="w-full bg-white mt-4 rounded-full hover:bg-gray-200 text-gray-900 py-2 px-4 transition-all duration-300 transform hover:scale-105"
           onClick={() => {
             setMembership(membership);
             onClick();
