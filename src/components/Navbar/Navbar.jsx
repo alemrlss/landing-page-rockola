@@ -55,7 +55,7 @@ function Navbar() {
         <a href={"/"} className="text-2xl md:text-5xl text-white font-semibold">
           <motion.div>
             <img
-              src="/public/logo.png"
+              src="/logo.png"
               alt="logo image"
               width={60}
               height={60}
