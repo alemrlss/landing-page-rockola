@@ -1,6 +1,9 @@
+import React, { useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
 import CardSubscription from "./Card";
 import { AiFillStar, AiOutlineCrown } from "react-icons/ai";
 import { FaTrophy } from "react-icons/fa";
+import { useInView } from "react-intersection-observer";
 
 function Plans() {
   const memberships = [
@@ -32,13 +35,40 @@ function Plans() {
       type: 30,
     },
   ];
+
   const iconMap = {
     10: <AiFillStar />,
     20: <FaTrophy />,
     30: <AiOutlineCrown />,
   };
+
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    triggerOnce: false,
+  });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("animate");
+    } else {
+      controls.start("initial");
+    }
+  }, [controls, inView]);
+
+  const cardVariants = {
+    initial: { y: 50, opacity: 0 },
+    animate: { y: 0, opacity: 1 },
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center mt-6">
+    <motion.div
+      ref={ref}
+      initial="initial"
+      animate={controls}
+      variants={cardVariants}
+      transition={{ duration: 0.5 }}
+      className="flex flex-col items-center justify-center mt-6"
+    >
       <div className="text-white text-center">
         <h2 className="text-2xl sm:text-4xl text-white">Planes</h2>
         <p className="text-base sm:text-xl mt-4">
@@ -58,7 +88,7 @@ function Plans() {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

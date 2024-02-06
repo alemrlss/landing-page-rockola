@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { motion, useAnimation } from "framer-motion";
 import FormCompanies from "./FormCompanies";
 import FormClients from "./FormClients";
-import { AiOutlineUser } from "react-icons/ai"; // Importa los íconos necesarios
-import { BsBriefcase } from "react-icons/bs"; // Importa el nuevo icono
+import { AiOutlineUser } from "react-icons/ai";
+import { BsBriefcase } from "react-icons/bs";
+import { useInView } from "react-intersection-observer";
 import api from "../../api/api";
 
 function Register() {
@@ -25,6 +26,19 @@ function Register() {
     setSelectedType(type);
   };
 
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    triggerOnce: false,
+  });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    } else {
+      controls.start("hidden");
+    }
+  }, [controls, inView]);
+
   const formVariants = {
     hidden: { opacity: 0, x: -50 },
     visible: { opacity: 1, x: 0 },
@@ -32,7 +46,12 @@ function Register() {
 
   return (
     <>
-      <div
+      <motion.div
+        ref={ref}
+        initial="hidden"
+        animate={controls}
+        variants={formVariants}
+        transition={{ duration: 0.5 }}
         className="flex flex-col items-center justify-center pt-16 sm:pt-28 "
         id="register"
       >
@@ -76,7 +95,7 @@ function Register() {
         </div>
 
         {/* Fondo */}
-      </div>
+      </motion.div>
 
       {/* Contenido principal */}
       <div className="flex flex-col-reverse sm:flex-row space-y-4 sm:space-y-0 justify-center items-center mb-6">

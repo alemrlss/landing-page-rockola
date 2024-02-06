@@ -1,16 +1,27 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 import FeatureItem from "./FeatureItem";
+import featuresClient from "../../data/featuresCompany";
 
-import featuresCompany from "../../data/featuresCompany";
 function FeaturesCompany() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    triggerOnce: false,
+  });
 
   const cardVariants = {
-    initial: { y: 50, opacity: 0 },
-    animate: { y: 0, opacity: 1 },
+    hidden: { x: -50, opacity: 0 },
+    visible: { x: 0, opacity: 1 },
   };
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    } else {
+      controls.start("hidden");
+    }
+  }, [controls, inView]);
 
   return (
     <div className=" p-2 rounded-t-sm w-full">
@@ -18,13 +29,13 @@ function FeaturesCompany() {
         ref={ref}
         className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4"
       >
-        {featuresCompany.map((feature, index) => (
+        {featuresClient.map((feature, index) => (
           <motion.li
             key={index}
-            initial="initial"
-            animate={isInView ? "animate" : "initial"}
+            initial="hidden"
+            animate={controls}
             variants={cardVariants}
-            transition={{ duration: 0.3, delay: index * 0.4 }}
+            transition={{ duration: 0.5 }}
           >
             <FeatureItem
               title={feature.title}

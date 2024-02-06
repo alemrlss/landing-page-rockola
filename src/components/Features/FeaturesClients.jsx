@@ -1,16 +1,27 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 import FeatureItem from "./FeatureItem";
 import featuresClient from "../../data/featuresClient";
 
 function FeaturesClients() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  const controls = useAnimation();
+  const [ref, inView] = useInView({
+    triggerOnce: false,
+  });
 
   const cardVariants = {
-    initial: { x: 50, opacity: 0 },
-    animate: { x: 0, opacity: 1 },
+    hidden: { x: 50, opacity: 0 },
+    visible: { x: 0, opacity: 1 },
   };
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    } else {
+      controls.start("hidden");
+    }
+  }, [controls, inView]);
 
   return (
     <div className=" p-2 rounded-t-sm w-full">
@@ -21,10 +32,10 @@ function FeaturesClients() {
         {featuresClient.map((feature, index) => (
           <motion.li
             key={index}
-            initial="initial"
-            animate={isInView ? "animate" : "initial"}
+            initial="hidden"
+            animate={controls}
             variants={cardVariants}
-            transition={{ duration: 0.3, delay: index * 0.4 }}
+            transition={{ duration: 0.5 }}
           >
             <FeatureItem
               title={feature.title}

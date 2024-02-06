@@ -4,7 +4,6 @@ import { TiThMenu } from "react-icons/ti";
 
 import { motion } from "framer-motion";
 import "./Navbar.css";
-import MenuMobile from "./MenuMobile";
 import MenuOverlay from "./MenuOverlay";
 
 function Navbar() {
@@ -85,22 +84,18 @@ function Navbar() {
           </a>
         </div>
 
-        <div className="mobile-menu block md:hidden">
-          {!navbarOpen ? (
-            <button
-              onClick={() => setNavbarOpen(true)}
-              className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"
-            >
-              <TiThMenu className="h-5 w-5" />
-            </button>
-          ) : (
-            <button
-              onClick={() => setNavbarOpen(false)}
-              className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"
-            >
-              <TiThMenu className="h-5 w-5" />
-            </button>
-          )}
+        <div className="mobile-menu  md:hidden flex items-center space-x-4">
+          <a href="#register">
+            <motion.button className="text-white bg-transparent border-4 hover:underline border-orange-700 rounded-full py-3 px-6 text-sm font-bold tracking-widest">
+              REGISTRARME
+            </motion.button>
+          </a>
+          <button
+            onClick={() => setNavbarOpen(!navbarOpen)}
+            className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"
+          >
+            <TiThMenu className="h-5 w-5" />
+          </button>
         </div>
       </div>
       {navbarOpen ? (
