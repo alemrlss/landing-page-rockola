@@ -31,9 +31,9 @@ function PresentationImage() {
       transition={{ duration: 0.5 }}
     >
       <img
-        src="/company.png"
+        src="/companyy.png"
         alt="logo image"
-        className="w-64 sm:w-96"
+        className=""
         draggable={false}
       />
     </motion.div>

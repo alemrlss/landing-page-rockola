@@ -1,9 +1,11 @@
-import Test from "/client.png";
-import Coins from "/monedas.png";
-import Pago from "/pago.png";
-import Interactuar from "/interactuar.png";
-import Karaoke from "/karaoke.png";
-import Infinito from "/infinito.png";
+import Test from "/clients/6.png";
+import Coins from "/clients/7.png";
+import Pago from "/clients/8.png";
+import Infinito from "/clients/9.png";
+import Infinito1 from "/clients/10.png";
+import Infinito12 from "/clients/11.png";
+import Infinito13 from "/clients/12.png";
+import Infinito15 from "/clients/13.png";
 
 const featuresClient = [
   {
@@ -39,28 +41,28 @@ const featuresClient = [
     description:
       "Conviértete en parte activa de la experiencia musical contribuyendo con tus selecciones personales y dando forma al ambiente del establecimiento.",
     delay: 0.2,
-    image: Interactuar,
+    image: Infinito1,
   },
   {
     title: "Opción de Música o Karaoke",
     description:
       "Elige entre una amplia variedad de opciones, ya sea disfrutar de música envolvente o dar un toque divertido con sesiones de karaoke.",
     delay: 1.0,
-    image: Karaoke,
+    image: Infinito12,
   },
   {
     title: "Opción de Música o Karaoke",
     description:
       "Elige entre una amplia variedad de opciones, ya sea disfrutar de música envolvente o dar un toque divertido con sesiones de karaoke.",
     delay: 1.0,
-    image: Karaoke,
+    image: Infinito13,
   },
   {
     title: "Opción de Música o Karaoke",
     description:
       "Elige entre una amplia variedad de opciones, ya sea disfrutar de música envolvente o dar un toque divertido con sesiones de karaoke.",
     delay: 1.0,
-    image: Karaoke,
+    image: Infinito15,
   },
 ];
 

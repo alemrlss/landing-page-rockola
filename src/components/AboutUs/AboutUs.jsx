@@ -43,9 +43,9 @@ function AboutUs() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <motion.img
-            src="monedas.png"
+            src="pc.png"
             alt="About Us Image"
-            className="w-72 h-72 rounded-lg"
+            className=" rounded-lg"
             initial="initial"
             animate={inView ? "visible" : "hidden"}
           />
@@ -58,9 +58,9 @@ function AboutUs() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <motion.img
-            src="pago.png"
+            src="pc2.png"
             alt="About Us Image"
-            className="w-80 h-80 rounded-lg"
+            className="rounded-lg"
             initial="initial"
             animate={inView ? "visible" : "hidden"}
           />

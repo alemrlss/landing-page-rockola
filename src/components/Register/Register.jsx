@@ -101,10 +101,10 @@ function Register() {
       <div className="flex flex-col-reverse sm:flex-row space-y-4 sm:space-y-0 justify-center items-center mb-6">
         <div className="hidden sm:block sm:w-1/2">
           {selectedType === "user" && (
-            <img src="client.png" className="w-full" alt="Cliente" />
+            <img src="20.png" className="" alt="Cliente" />
           )}
           {selectedType === "company" && (
-            <img src="company.png" className="w-full" alt="Empresa" />
+            <img src="21.png" className="w-full" alt="Empresa" />
           )}
         </div>
 
