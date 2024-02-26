@@ -24,7 +24,7 @@ function FeaturesClients() {
   }, [controls, inView]);
 
   return (
-    <div className=" p-2 rounded-t-sm w-full">
+    <div className="p-2 rounded-t-sm w-full">
       <ul
         ref={ref}
         className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4"
@@ -36,6 +36,7 @@ function FeaturesClients() {
             animate={controls}
             variants={cardVariants}
             transition={{ duration: 0.5 }}
+            style={{ width: "200px" }}
           >
             <FeatureItem
               title={feature.title}

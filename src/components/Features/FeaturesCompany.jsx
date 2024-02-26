@@ -4,31 +4,22 @@ import { useInView } from "react-intersection-observer";
 import FeatureItem from "./FeatureItem";
 import featuresClient from "../../data/featuresCompany";
 
-function FeaturesCompany() {
-  const controls = useAnimation();
-  const [ref, inView] = useInView({
-    triggerOnce: false,
-  });
+const cardVariants = {
+  hidden: { x: -50, opacity: 0 },
+  visible: { x: 0, opacity: 1 },
+};
 
-  const cardVariants = {
-    hidden: { x: -50, opacity: 0 },
-    visible: { x: 0, opacity: 1 },
-  };
+const FeaturesCompany = () => {
+  const controls = useAnimation();
+  const [ref, inView] = useInView({ triggerOnce: false });
 
   useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    } else {
-      controls.start("hidden");
-    }
+    controls.start(inView ? "visible" : "hidden");
   }, [controls, inView]);
 
   return (
-    <div className=" p-2 rounded-t-sm w-full">
-      <ul
-        ref={ref}
-        className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4"
-      >
+    <div className="p-2 rounded-t-sm w-full">
+      <ul ref={ref} className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {featuresClient.map((feature, index) => (
           <motion.li
             key={index}
@@ -47,6 +38,6 @@ function FeaturesCompany() {
       </ul>
     </div>
   );
-}
+};
 
 export default FeaturesCompany;

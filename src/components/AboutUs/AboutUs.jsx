@@ -32,10 +32,10 @@ function AboutUs() {
           className="text-white text-2xl md:w-1/2 mb-6 md:mb-0"
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit,
-          porro. Quia assumenda ducimus quisquam inventore optio! Aliquid, earum
-          obcaecati rerum minima eos iste tenetur sapiente delectus possimus
-          excepturi harum nihil.
+          En Psrockola, nos dedicamos a ofrecer servicios de entretenimiento
+          multimedia a través de nuestra innovadora plataforma de software.
+          Nuestro enfoque se centra en proporcionar experiencias únicas y
+          atractivas para los clientes.
         </motion.p>
         <motion.div
           className="md:w-1/2 flex justify-center"
@@ -69,11 +69,25 @@ function AboutUs() {
           className="text-white text-2xl md:w-1/2 mb-6 md:mb-0"
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim odit
-          iste minima architecto quibusdam similique laboriosam natus doloremque
-          nisi veritatis beatae provident consequatur culpa eius, illum aperiam
-          alias fugiat ipsam.
+          Mediante nuestra tecnología líder como el sistema Rockobit, permitimos
+          a los clientes disfrutar de un control total sobre su experiencia
+          musical. Desde la comodidad de su asiento, pueden elegir la música que
+          desean escuchar y disfrutarla en los televisores del local
         </motion.p>
+      </motion.div>
+      <motion.div className="flex mt-4">
+        <motion.p
+          className="text-white text-2xl md:w-3/4 mb-6 md:mb-0"
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          En Psrockola, estamos comprometidos con la excelencia en el
+          entretenimiento multimedia, brindando soluciones tecnológicas
+          innovadoras que mejoran la experiencia de nuestros clientes.
+        </motion.p>
+        <motion.p
+          className="text-white text-2xl md:w-1/4 mb-6 md:mb-0"
+          transition={{ duration: 0.5, delay: 0.2 }}
+        ></motion.p>
       </motion.div>
       {/* Agrega más secciones de texto e imagen según sea necesario */}
     </motion.div>

@@ -29,7 +29,6 @@ function PresentationText() {
       animate={controls}
       variants={animationVariants}
       transition={{ duration: 0.3 }}
-     
     >
       <p className="text-3xl sm:text-4xl">
         Potencia tu establecimiento con{" "}
@@ -37,12 +36,11 @@ function PresentationText() {
         ambiente con música y videos exclusivos
       </p>
       <p className="text-base">
-        Descubre nuestra innovadora aplicación diseñada para empresas, que
-        redefine la experiencia musical en tus locales comerciales. PSROCKOLA
-        ofrece a tus clientes la posibilidad de personalizar su ambiente de
-        manera única mediante un sistema intuitivo basado en monedas. ¡Te damos
-        la bienvenida a la revolución en entretenimiento para establecimientos
-        comerciales!
+        Descubre nuestra innovadora aplicación diseñada para establecimientos,
+        que redefine la experiencia musical en tus locales. PSROCKOLA ofrece a
+        tus clientes la posibilidad de personalizar su ambiente de manera única
+        mediante un sistema intuitivo basado en Rockobits. Te damos la
+        bienvenida a la revolución en entretenimiento para establecimientos
       </p>
       <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-full">
         <a
@@ -60,7 +58,7 @@ function PresentationText() {
       </div>
       <p className="text-sm text-gray-500 mt-4">
         ¡Regístrate ahora y obtén beneficios exclusivos al lanzamiento de la
-        aplicación! Clientes recibirán entre 100 y 500 monedas de regalo, y las
+        aplicación! Clientes recibirán entre 100 y 500 Rockobits de regalo, y las
         empresas disfrutarán de membresías especiales. ¡No te pierdas estas
         ventajas!
       </p>{" "}

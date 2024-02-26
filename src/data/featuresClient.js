@@ -16,16 +16,16 @@ const featuresClient = [
     image: Test,
   },
   {
-    title: "Recarga Fácil de Monedas",
+    title: "Obtencion rapida de Rockobits",
     description:
-      "Recarga monedas fácilmente en el establecimiento para seguir disfrutando de la mejor música y videos.",
+      "Abastecimiento de rockobits facilmente en el establecimiento para seguir disfrutando de la mejor musica y videos.",
     delay: 0.6,
     image: Coins,
   },
   {
-    title: "Pago Instantáneo por Música",
+    title: "Adquisición inmediata por musica",
     description:
-      "Experimenta un proceso de pago por música instantáneo y sin complicaciones para disfrutar al instante de tus elecciones musicales.",
+      "Experimenta un proceso de adquisicion por musica inmediata y sin complicaciones para disfrutar al instante de tus elecciones musicales",
     delay: 0.8,
     image: Pago,
   },
@@ -51,16 +51,16 @@ const featuresClient = [
     image: Infinito12,
   },
   {
-    title: "Opción de Música o Karaoke",
+    title: "Facilidad de uso",
     description:
-      "Elige entre una amplia variedad de opciones, ya sea disfrutar de música envolvente o dar un toque divertido con sesiones de karaoke.",
+      "Nuestros clientes pueden acceder y disfrutar de nuestros servicios de manera rápida y sencilla, sin complicaciones.  ",
     delay: 1.0,
     image: Infinito13,
   },
   {
-    title: "Opción de Música o Karaoke",
+    title: "Atención y soporte personalizado ",
     description:
-      "Elige entre una amplia variedad de opciones, ya sea disfrutar de música envolvente o dar un toque divertido con sesiones de karaoke.",
+      "En Psrockola, valoramos a cada cliente y nos comprometemos a brindarte una atención personalizada y un soporte dedicado en todo momento.",
     delay: 1.0,
     image: Infinito15,
   },
