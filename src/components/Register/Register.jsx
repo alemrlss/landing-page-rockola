@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import FormCompanies from "./FormCompanies";
 import FormClients from "./FormClients";
@@ -90,7 +90,7 @@ function Register() {
             <span className="mr-1 sm:mr-2">
               <BsBriefcase />
             </span>{" "}
-            Empresa
+            Establecimiento
           </motion.button>
         </div>
 
@@ -101,10 +101,10 @@ function Register() {
       <div className="flex flex-col-reverse sm:flex-row space-y-4 sm:space-y-0 justify-center items-center mb-6">
         <div className="hidden sm:block sm:w-1/2">
           {selectedType === "user" && (
-            <img src="20.png" className="" alt="Cliente" />
+            <img src="20.png" className="w-full" alt="Cliente" />
           )}
           {selectedType === "company" && (
-            <img src="21.png" className="w-full" alt="Empresa" />
+            <img src="companies.png" className="w-full" alt="Establecimiento" />
           )}
         </div>
 

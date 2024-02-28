@@ -58,8 +58,8 @@ function PresentationText() {
       </div>
       <p className="text-sm text-gray-500 mt-4">
         ¡Regístrate ahora y obtén beneficios exclusivos al lanzamiento de la
-        aplicación! Clientes recibirán entre 100 y 500 Rockobits de regalo, y las
-        empresas disfrutarán de membresías especiales. ¡No te pierdas estas
+        aplicación! Clientes recibirán entre 100 y 500 Rockobits de regalo, y los
+        establecimiento disfrutarán de membresías especiales. ¡No te pierdas estas
         ventajas!
       </p>{" "}
     </motion.div>

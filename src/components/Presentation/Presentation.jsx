@@ -3,7 +3,7 @@ import PresentationText from "./PresentationText";
 
 function Presentation() {
   return (
-    <div className="flex flex-col mt-20 items-center sm:flex-row">
+    <div className="flex flex-col items-center pt-20 sm:flex-row mx-4 sm:mx-20 w-full">
       <PresentationText />
       <PresentationImage />
     </div>

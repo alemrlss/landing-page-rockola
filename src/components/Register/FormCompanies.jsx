@@ -147,7 +147,7 @@ function FormCompanies({
     } else {
       const formDataToSend = {
         name: formData.name,
-        ruc: formData.ruc,
+        ruc: null,
         email: formData.email,
         password: formData.password,
         phone: formData.phone,

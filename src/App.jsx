@@ -10,8 +10,8 @@ function App() {
   return (
     <main className="flex min-h-screen flex-col bg-[#121212] relative overflow-hidden">
       <Navbar />
-      <div className="container mt-8 sm:mt-24 mx-auto px-4 sm:px-12 relative z-10">
         <Presentation />
+      <div className="container mt-8 sm:mt-24 mx-auto px-4 sm:px-12 relative z-10">
         <AboutUs />
         <Clients />
         <Companies />

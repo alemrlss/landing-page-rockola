@@ -36,7 +36,6 @@ function FeaturesClients() {
             animate={controls}
             variants={cardVariants}
             transition={{ duration: 0.5 }}
-            style={{ width: "200px" }}
           >
             <FeatureItem
               title={feature.title}

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { AiFillAlert } from "react-icons/ai";
 import { TiThMenu } from "react-icons/ti";
 
 import { motion } from "framer-motion";
@@ -36,7 +35,7 @@ function Navbar() {
       path: "#clients",
     },
     {
-      title: "Empresas",
+      title: "Establecimientos",
       path: "#companies",
     },
   ];
@@ -56,8 +55,8 @@ function Navbar() {
             <img
               src="/logo.png"
               alt="logo image"
-              width={60}
-              height={60}
+              width={100}
+              height={100}
               draggable={false}
             />
           </motion.div>

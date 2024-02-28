@@ -7,7 +7,7 @@ function Companies() {
       className="flex justify-center items-center flex-col pt-28"
       id="companies"
     >
-      <h2 className="text-white text-4xl my-5">Empresas</h2>
+      <h2 className="text-white text-4xl my-5">Establecimientos</h2>
       <FeaturesCompany />
       <Plans />
     </div>
