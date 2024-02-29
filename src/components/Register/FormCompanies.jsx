@@ -103,23 +103,20 @@ function FormCompanies({
         if (formData.password.length < 8) {
           newErrors.password = "La contraseña debe tener 8 caracteres o más";
         }
-        if (formData.phone.length < 13) {
-          newErrors.phone = "El número de teléfono debe tener 13 dígitos";
-        }
-        if (formData.ruc.length < 13) {
-          newErrors.ruc = "El RUC debe tener 13 dígitos";
+        if (formData.phone.length > 13) {
+          newErrors.phone =
+            "El número de teléfono debe tener maximo 13 dígitos";
         }
         if (formData.postalCode.length < 4) {
           newErrors.postalCode = "El código postal debe tener 4 dígitos";
         }
-        if (formData.name.length < 13) {
-          newErrors.name = "El nombre debe tener 13 caracteres";
+        if (formData.name.length > 25 || formData.name.length < 2) {
+          newErrors.name = "El nombre debe tener entre 2 y 25 caracteres";
         }
       }
     };
 
     validateField("name", "Nombre");
-    validateField("ruc", "RUC");
     validateField("email", "Correo Electrónico");
     validateField("phone", "Número de Teléfono");
     validateField("password", "Contraseña");
@@ -224,8 +221,10 @@ function FormCompanies({
       initial="hidden"
       animate="visible"
     >
-      <h3 className="text-2xl font-semibold mb-4">Registro de Empresa</h3>
-      <div className="grid grid-cols-2 gap-1">
+      <h3 className="text-2xl font-semibold mb-4">
+        Registro de Establecimiento
+      </h3>
+      <div className="grid grid-cols-1 md:grid-cols-2  gap-1">
         <div className="mb-1">
           <label htmlFor="name" className="block text-sm font-bold">
             Nombre
@@ -247,7 +246,6 @@ function FormCompanies({
             <div className="text-red-500 text-sm">{errors.name}</div>
           )}
         </div>
-
 
         <div className="mb-2">
           <label htmlFor="email" className="block text-sm font-bold">
@@ -361,8 +359,8 @@ function FormCompanies({
           )}
         </div>
       </div>
-      <div className="flex space-x-2">
-        <div className="mb-2 w-3/4">
+      <div className="flex flex-col md:flex-row space-x-2 justify-center items-center">
+        <div className="mb-2 w-full md:w-3/4">
           <label htmlFor="address" className="block text-sm font-bold">
             Dirección
           </label>
@@ -384,7 +382,7 @@ function FormCompanies({
           )}
         </div>
 
-        <div className="mb-2 w-1/4">
+        <div className="mb-2 w-full md:w-1/4">
           <label htmlFor="postalCode" className="block text-sm font-bold">
             Código Postal
           </label>
@@ -407,7 +405,7 @@ function FormCompanies({
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-1 gap-1 md:grid-cols-2 md:gap-2">
         <div className="mb-2">
           <label htmlFor="countryId" className="block text-sm font-bold">
             País
@@ -510,7 +508,7 @@ function FormCompanies({
       </div>
       <div className="flex justify-center items-center mb-2">
         {loading ? (
-          <div role="status">
+          <div role="status" className="mt-2">
             <svg
               aria-hidden="true"
               className="w-10 h-10 text-gray-200 animate-spin dark:text-gray-600 fill-orange-600"

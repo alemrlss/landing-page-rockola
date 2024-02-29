@@ -23,21 +23,20 @@ function PresentationImage() {
 
   return (
     <motion.div
-      className="w-full pt-10 flex items-center justify-center px-4 sm:px-0"
+      className="w-full pt-10 flex items-center justify-center md:justify-end sm:px-0"
       ref={ref}
       initial="hidden"
       animate={controls}
       variants={animationVariants}
       transition={{ duration: 0.3 }}
     >
-     <img
-  src="/disco.png"
-  alt="logo image"
-  className="w-full h-full"
-  draggable={false}
-  style={{ maxWidth: "100%", height: "auto" }}
-/>
-
+      <img
+        src="/disco.png"
+        alt="logo image"
+        className="w-full h-full"
+        draggable={false}
+        style={{ maxWidth: "70%", height: "auto" }}
+      />
     </motion.div>
   );
 }

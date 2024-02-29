@@ -234,7 +234,7 @@ function FormClients({
       animate="visible"
     >
       <h3 className="text-2xl font-semibold mb-4">Registro de Usuario</h3>
-      <div className="grid grid-cols-2 gap-1">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
         <div className="mb-1">
           <label htmlFor="name" className="block text-sm font-bold">
             Nombre
@@ -390,8 +390,8 @@ function FormClients({
           )}
         </div>
       </div>
-      <div className="flex space-x-2">
-        <div className="mb-2 w-3/4">
+      <div className="flex flex-col md:flex-row justify-center items-center space-x-2">
+        <div className="mb-2 w-full md:w-3/4">
           <label htmlFor="address" className="block text-sm font-bold">
             Dirección
           </label>
@@ -413,7 +413,7 @@ function FormClients({
           )}
         </div>
 
-        <div className="mb-2 w-1/4">
+        <div className="mb-2 w-full md:w-1/4">
           <label htmlFor="postalCode" className="block text-sm font-bold">
             Código Postal
           </label>
@@ -456,7 +456,7 @@ function FormClients({
           <div className="text-red-500 text-sm">{errors.birthDate}</div>
         )}
       </div>
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid md:grid-cols-2 md:gap-2 grid-cols-1 gap-1">
         <div className="mb-2">
           <label htmlFor="countryId" className="block text-sm font-bold">
             País
@@ -559,7 +559,7 @@ function FormClients({
       </div>
       <div className="flex justify-center items-center mb-2">
         {loading ? (
-          <div role="status">
+          <div role="status" className="mt-2">
             <svg
               aria-hidden="true"
               className="w-10 h-10 text-gray-200 animate-spin dark:text-gray-600 fill-orange-600"

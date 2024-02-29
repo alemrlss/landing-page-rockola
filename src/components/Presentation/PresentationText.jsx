@@ -25,7 +25,7 @@ function PresentationText() {
 
   return (
     <motion.div
-      className="text-gray-100 w-full sm:w-full md:w-1/2 flex flex-col items-center justify-center space-y-4 px-4 sm:px-2"
+      className="text-gray-100 w-full sm:w-full md:w-1/2 flex flex-col items-end md:absolute justify-end space-y-4 px-4 sm:px-2"
       ref={ref}
       initial="hidden"
       animate={controls}
