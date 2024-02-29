@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { TiThMenu } from "react-icons/ti";
-
 import { motion } from "framer-motion";
 import "./Navbar.css";
 import MenuOverlay from "./MenuOverlay";
@@ -11,11 +10,7 @@ function Navbar() {
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
-    if (scrollPosition > 0) {
-      setNavbarScrolled(true);
-    } else {
-      setNavbarScrolled(false);
-    }
+    setNavbarScrolled(scrollPosition > 0);
   };
 
   useEffect(() => {
@@ -41,27 +36,29 @@ function Navbar() {
   ];
 
   return (
-    <motion.nav
+      <motion.nav
       initial={{ opacity: 0, y: -100 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed mx-auto border border-[#33353F] top-0 left-0 right-0 z-30 ${
+      className={`fixed top-0 left-0 right-0 z-30 mx-auto border border-[#33353F] ${
         navbarScrolled ? "navbar-scrolled" : "navbar-no-scrolled"
       }`}
     >
-      <div className="flex container lg:py-4 flex-wrap items-center justify-between mx-auto px-4 py-2">
-        <a href={"/"} className="text-2xl md:text-5xl text-white font-semibold">
+      <div className="container lg:py-4 flex items-center justify-between mx-auto px-4 py-2">
+
+        <a href={"/"} className="text-2xl md:text-4xl text-white font-semibold">
           <motion.div>
             <img
               src="/logo.png"
               alt="logo image"
-              width={100}
-              height={100}
+              width={80}
+              height={80}
               draggable={false}
             />
           </motion.div>
         </a>
-        <div className="menu hidden md:block md:w-auto" id="navbar">
+
+        <div className="hidden md:flex md:w-auto" id="navbar">
           <ul className="flex p-4 md:p-0 md:flex-row md:space-x-8 mt-0">
             {navLinks.map((link, index) => (
               <li key={index}>
@@ -75,17 +72,10 @@ function Navbar() {
             ))}
           </ul>
         </div>
-        <div className="hidden md:block">
-          <a href="#register">
-            <motion.button className="text-white bg-transparent border-4 hover:underline border-orange-700 rounded-full py-3 px-6 text-sm font-bold tracking-widest">
-              REGISTRARME
-            </motion.button>
-          </a>
-        </div>
 
-        <div className="mobile-menu  md:hidden flex items-center space-x-4">
+        <div className="md:hidden flex items-center space-x-4">
           <a href="#register">
-            <motion.button className="text-white bg-transparent border-4 hover:underline border-orange-700 rounded-full py-3 px-6 text-sm font-bold tracking-widest">
+            <motion.button className="text-white bg-transparent border-4 hover:underline border-orange-700 rounded-full py-2 px-4 text-sm font-bold tracking-widest">
               REGISTRARME
             </motion.button>
           </a>
@@ -97,14 +87,13 @@ function Navbar() {
           </button>
         </div>
       </div>
-      {navbarOpen ? (
+
+      {navbarOpen && (
         <MenuOverlay
           links={navLinks}
-          onClose={() => {
-            setNavbarOpen(!navbarOpen);
-          }}
+          onClose={() => setNavbarOpen(!navbarOpen)}
         />
-      ) : null}{" "}
+      )}
     </motion.nav>
   );
 }
