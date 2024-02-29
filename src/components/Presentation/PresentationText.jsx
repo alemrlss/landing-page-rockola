@@ -1,3 +1,5 @@
+// PresentationText.js
+
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
@@ -12,7 +14,7 @@ function PresentationText() {
     if (inView) {
       controls.start("visible");
     } else {
-      controls.start("hidden"); // Reiniciar la animación cuando sale de vista
+      controls.start("hidden");
     }
   }, [controls, inView]);
 
@@ -23,19 +25,19 @@ function PresentationText() {
 
   return (
     <motion.div
-      className="text-gray-100 w-full sm:w-1/2 flex flex-col items-center justify-center space-y-4 px-4 sm:px-0"
+      className="text-gray-100 w-full sm:w-full md:w-1/2 flex flex-col items-center justify-center space-y-4 px-4 sm:px-2"
       ref={ref}
       initial="hidden"
       animate={controls}
       variants={animationVariants}
       transition={{ duration: 0.3 }}
     >
-      <p className="text-3xl sm:text-4xl">
+      <p className="text-2xl sm:text-3xl md:text-4xl text-left">
         Potencia tu establecimiento con{" "}
         <b className="tracking-wide text-orange-500">PSROCKOLA:</b> Eleva tu
         ambiente con música y videos exclusivos
       </p>
-      <p className="text-base">
+      <p className="text-base sm:text-lg md:text-xl text-left">
         Descubre nuestra innovadora aplicación diseñada para establecimientos,
         que redefine la experiencia musical en tus locales. PSROCKOLA ofrece a
         tus clientes la posibilidad de personalizar su ambiente de manera única
@@ -61,7 +63,7 @@ function PresentationText() {
         aplicación! Clientes recibirán entre 100 y 500 Rockobits de regalo, y los
         establecimiento disfrutarán de membresías especiales. ¡No te pierdas estas
         ventajas!
-      </p>{" "}
+      </p>
     </motion.div>
   );
 }
