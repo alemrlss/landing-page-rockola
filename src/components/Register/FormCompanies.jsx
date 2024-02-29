@@ -248,27 +248,6 @@ function FormCompanies({
           )}
         </div>
 
-        <div className="mb-2">
-          <label htmlFor="ruc" className="block text-sm font-bold">
-            Ruc
-          </label>
-          <input
-            type="text"
-            name="ruc"
-            placeholder="12345678"
-            className={`p-3 rounded-md text-black border-2 w-full ${
-              errors.ruc
-                ? "border-red-500"
-                : "border-gray-300 focus:border-blue-500"
-            }`}
-            value={formData.ruc}
-            onChange={handleInputChange}
-            required
-          />
-          {errors.ruc && (
-            <div className="text-red-500  text-sm">{errors.ruc}</div>
-          )}
-        </div>
 
         <div className="mb-2">
           <label htmlFor="email" className="block text-sm font-bold">
