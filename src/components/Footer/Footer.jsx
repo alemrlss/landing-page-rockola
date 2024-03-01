@@ -13,7 +13,7 @@ function Footer() {
           {/* Íconos de Redes Sociales */}
           <div className="flex flex-wrap space-y-2 lg:space-x-4 lg:space-y-0">
             <a
-              href="https://www.facebook.com/tu_pagina"
+              href="https://www.facebook.com/profile.php?id=100069413372128&mibextid=kFxxJD"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center space-x-2 w-1/2 lg:w-auto"
@@ -25,7 +25,7 @@ function Footer() {
             </a>
 
             <a
-              href="https://twitter.com/tu_cuenta"
+              href="https://twitter.com/psrockolapp"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center space-x-2 w-1/2 lg:w-auto"
@@ -37,7 +37,7 @@ function Footer() {
             </a>
 
             <a
-              href="https://www.instagram.com/tu_cuenta"
+              href="https://www.instagram.com/psrockola?igsh=bzc3bXc3MnZ1cDV0"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center space-x-2 w-1/2 lg:w-auto"
@@ -49,7 +49,7 @@ function Footer() {
             </a>
 
             <a
-              href="https://www.linkedin.com/in/tu_perfil"
+              href="https://www.linkedin.com/in/ps-rockola-b889472b7?trk=contact-info"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center space-x-2 w-1/2 lg:w-auto"
