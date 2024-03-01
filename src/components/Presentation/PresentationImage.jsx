@@ -23,7 +23,7 @@ function PresentationImage() {
 
   return (
     <motion.div
-      className="w-full pt-10 flex items-center justify-center md:justify-end sm:px-0"
+      className="w-full pt-10 flex items-center justify-center md:justify-end sm:px-0 "
       ref={ref}
       initial="hidden"
       animate={controls}
