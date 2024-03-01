@@ -10,7 +10,6 @@ function Plans() {
     {
       id: 1,
       name: "Membresia Basica",
-      price: "price_1OcYAIFeiEj6y242fDPSuTaD",
       amount: 4.99,
       currency: "usd",
       active: true,
@@ -19,7 +18,6 @@ function Plans() {
     {
       id: 2,
       name: "Membresia Plus",
-      price: "price_1OcYAIFeiEj6y242fDPSuTaD",
       amount: 9.99,
       currency: "usd",
       active: true,
@@ -28,7 +26,6 @@ function Plans() {
     {
       id: 3,
       name: "Membresia Premium",
-      price: "price_1OcYAIFeiEj6y242fDPSuTaD",
       amount: 14.99,
       currency: "usd",
       active: true,

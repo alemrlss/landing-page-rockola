@@ -9,18 +9,21 @@ function CardSubscription({ membership, onClick, setMembership, icon }) {
         return {
           sales: "1",
           skins: "1",
+          screens: "2",
           customModePlay: false,
         };
       case 20:
         return {
           sales: "3",
           skins: "3",
+          screens: "4",
           customModePlay: false,
         };
       case 30:
         return {
           sales: "5",
           skins: "5",
+          screens: "6",
           customModePlay: true,
         };
       default:
@@ -78,24 +81,14 @@ function CardSubscription({ membership, onClick, setMembership, icon }) {
             <p>{getBenefits().skins} Skins disponibles</p>
           </div>
           <div className="mb-4 flex justify-start items-center space-x-2">
-            {getBenefits().customModePlay ? (
-              <FaCheck className="text-green-500" />
-            ) : (
-              <FaTimes className="text-red-700" />
-            )}
-            <p> Personalizar el valor de los Créditos</p>
+            <FaCheck className="text-green-500" />
+
+            <p>
+              {" "}
+              1 Pantalla (<b>Maximo {getBenefits().screens} Pantallas</b>)
+            </p>
           </div>
         </div>
-        <motion.button
-          className="w-full bg-white mt-4 rounded-full hover:bg-gray-200 text-gray-900 py-2 px-4 transition-all duration-300 transform hover:scale-105"
-          onClick={() => {
-            setMembership(membership);
-            onClick();
-          }}
-          whileHover={{ scale: 1.05 }}
-        >
-          Obtener
-        </motion.button>
       </div>
     </motion.section>
   );

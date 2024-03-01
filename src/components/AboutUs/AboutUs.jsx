@@ -20,7 +20,7 @@ function AboutUs() {
   return (
     <motion.div
       id="about"
-      className="flex justify-center items-center flex-col pt-28 "
+      className="flex justify-center items-center flex-col pt-14 sm:pt-28 "
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       ref={ref}
