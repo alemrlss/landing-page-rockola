@@ -2,7 +2,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import api from "../../api/api";
 import { FaUserPlus, FaEye, FaEyeSlash } from "react-icons/fa";
-import { parse } from "postcss";
 
 function FormClients({
   formVariants,
@@ -11,6 +10,7 @@ function FormClients({
   states,
   setStates,
   setCities,
+  phonecodes,
 }) {
   const [formData, setFormData] = useState({
     name: "",
@@ -25,6 +25,7 @@ function FormClients({
     countryId: "",
     stateId: "",
     cityId: "",
+    codePhone: "",
   });
 
   const [error, setError] = useState("");
@@ -35,12 +36,19 @@ function FormClients({
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+  const [codePhone, setCodePhone] = useState("");
+
   const handleTogglePassword = (passwordType) => {
     if (passwordType === "password") {
       setShowPassword(!showPassword);
     } else if (passwordType === "confirmPassword") {
       setShowConfirmPassword(!showConfirmPassword);
     }
+  };
+
+  const formatDateString = (dateString) => {
+    const [day, month, year] = dateString.split("/");
+    return `${year}-${month}-${day}`;
   };
 
   const handleInputChange = async (e) => {
@@ -55,17 +63,52 @@ function FormClients({
     delete updatedErrors[name];
     setErrors(updatedErrors);
 
+    let formattedValue = value;
+
+    // Modificación para el campo de fecha de nacimiento (birthDate)
+    if (name === "birthDate") {
+      // Añadir automáticamente la barra después de ingresar el día y el mes
+      if (value.length === 2 && !value.includes("/")) {
+        formattedValue += "/";
+      } else if (value.length === 5 && !value.includes("/", 3)) {
+        formattedValue += "/";
+      }
+    }
     setFormData({
       ...formData,
-      [name]: value,
+      [name]: formattedValue,
     });
 
     if (name === "countryId") {
+      const selectedCountry = countries.find((country) => country.id == value);
+      setCodePhone(selectedCountry.phoneCode);
+
       setFormData((prevData) => ({
         ...prevData,
         stateId: "",
         cityId: "",
         [name]: value,
+        codePhone: value,
+      }));
+
+      try {
+        const response = await api.get(`/state/${value}`);
+        setStates(response.data.data);
+      } catch (error) {
+        console.error("Error al obtener estados:", error);
+      }
+    }
+
+    if (name === "codePhone") {
+      const selectedCountry = countries.find((country) => country.id == value);
+      setCodePhone(selectedCountry.phoneCode);
+
+      setFormData((prevData) => ({
+        ...prevData,
+        stateId: "",
+        cityId: "",
+        [name]: value,
+        countryId: value,
       }));
 
       try {
@@ -88,6 +131,20 @@ function FormClients({
       }
     }
   };
+  const handleDateBlur = () => {
+    const inputDate = formData.birthDate;
+    if (inputDate && !isValidDateFormat(inputDate)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        birthDate: "Formato de fecha inválido. Utiliza dd/mm/yyyy",
+      }));
+    }
+  };
+
+  function isValidDateFormat(dateString) {
+    const regex = /^\d{2}\/\d{2}\/\d{4}$/;
+    return regex.test(dateString);
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -157,7 +214,7 @@ function FormClients({
         lastName: formData.lastName,
         email: formData.email,
         password: formData.password,
-        birthDate: formData.birthDate,
+        birthDate: formatDateString(formData.birthDate),
         phone: formData.phone,
         address: formData.address,
         postalCode: formData.postalCode,
@@ -234,7 +291,7 @@ function FormClients({
       animate="visible"
     >
       <h3 className="text-2xl font-semibold mb-4">Registro de Usuario</h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
+      <div className="grid grid-cols-1 md:grid-cols-2  gap-1">
         <div className="mb-1">
           <label htmlFor="name" className="block text-sm font-bold">
             Nombre
@@ -300,10 +357,38 @@ function FormClients({
             <div className="text-red-500 text-sm">{errors.email}</div>
           )}
         </div>
+        <div className="mb-2">
+          <label htmlFor="countryId" className="block text-sm font-bold">
+            Codigo de Telefono
+          </label>
+          <select
+            name="codePhone"
+            id="codePhone"
+            onChange={handleInputChange}
+            value={formData.codePhone}
+            className={`p-3 rounded-md text-black border-2 w-full ${
+              errors.phoneCode
+                ? "border-red-500"
+                : "border-gray-300 focus:border-blue-500"
+            }`}
+          >
+            <option value="" disabled>
+              Seleccione un codigo de Pais
+            </option>
 
+            {countries.map((countries) => (
+              <option key={countries.id} value={countries.id}>
+                {countries.phoneCode}
+              </option>
+            ))}
+          </select>
+          {errors.phoneCode && (
+            <div className="text-red-500 text-sm">{errors.countryId}</div>
+          )}
+        </div>
         <div className="mb-2">
           <label htmlFor="phone" className="block text-sm font-bold">
-            Teléfono
+            Teléfono ({codePhone})
           </label>
           <input
             type="text"
@@ -390,7 +475,7 @@ function FormClients({
           )}
         </div>
       </div>
-      <div className="flex flex-col md:flex-row justify-center items-center space-x-2">
+      <div className="flex flex-col md:flex-row space-x-2 justify-center items-center">
         <div className="mb-2 w-full md:w-3/4">
           <label htmlFor="address" className="block text-sm font-bold">
             Dirección
@@ -440,9 +525,9 @@ function FormClients({
           Fecha de nacimiento
         </label>
         <input
-          type="date"
+          type="text"
           name="birthDate"
-          placeholder="Fecha de Nacimiento"
+          placeholder="dd/mm/yyyy"
           className={`p-3 rounded-md text-black border-2 w-full ${
             errors.birthDate
               ? "border-red-500"
@@ -450,13 +535,14 @@ function FormClients({
           }`}
           value={formData.birthDate}
           onChange={handleInputChange}
+          onBlur={handleDateBlur}
           required
         />
         {errors.birthDate && (
           <div className="text-red-500 text-sm">{errors.birthDate}</div>
         )}
       </div>
-      <div className="grid md:grid-cols-2 md:gap-2 grid-cols-1 gap-1">
+      <div className="grid grid-cols-1 gap-1 md:grid-cols-2 md:gap-2">
         <div className="mb-2">
           <label htmlFor="countryId" className="block text-sm font-bold">
             País
@@ -559,7 +645,7 @@ function FormClients({
       </div>
       <div className="flex justify-center items-center mb-2">
         {loading ? (
-          <div role="status" className="mt-2">
+          <div role="status">
             <svg
               aria-hidden="true"
               className="w-10 h-10 text-gray-200 animate-spin dark:text-gray-600 fill-orange-600"

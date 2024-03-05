@@ -11,6 +11,7 @@ function FormCompanies({
   states,
   setStates,
   setCities,
+  phonecodes,
 }) {
   const [formData, setFormData] = useState({
     name: "",
@@ -24,6 +25,7 @@ function FormCompanies({
     countryId: "",
     stateId: "",
     cityId: "",
+    codePhone: "",
   });
 
   const [error, setError] = useState("");
@@ -33,6 +35,7 @@ function FormCompanies({
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [codePhone, setCodePhone] = useState("");
 
   const handleTogglePassword = (passwordType) => {
     if (passwordType === "password") {
@@ -55,17 +58,44 @@ function FormCompanies({
     delete updatedErrors[name];
 
     setErrors(updatedErrors);
+
+    let formattedValue = value;
+
     setFormData({
       ...formData,
-      [name]: value,
+      [name]: formattedValue,
     });
 
     if (name === "countryId") {
+      const selectedCountry = countries.find((country) => country.id == value);
+      setCodePhone(selectedCountry.phoneCode);
+
       setFormData((prevData) => ({
         ...prevData,
         stateId: "",
         cityId: "",
         [name]: value,
+        codePhone: value,
+      }));
+
+      try {
+        const response = await api.get(`/state/${value}`);
+        setStates(response.data.data);
+      } catch (error) {
+        console.error("Error al obtener estados:", error);
+      }
+    }
+
+    if (name === "codePhone") {
+      const selectedCountry = countries.find((country) => country.id == value);
+      setCodePhone(selectedCountry.phoneCode);
+
+      setFormData((prevData) => ({
+        ...prevData,
+        stateId: "",
+        cityId: "",
+        [name]: value,
+        countryId: value,
       }));
 
       try {
@@ -81,7 +111,7 @@ function FormCompanies({
       setFormData((prevData) => ({ ...prevData, [name]: value }));
 
       try {
-        const response = await api.get(`/city/${value}`);
+        const response = await api.get(`/city/${value}/selects`);
         setCities(response.data.data);
       } catch (error) {
         console.error("Error al obtener ciudades:", error);
@@ -268,10 +298,39 @@ function FormCompanies({
             <div className="text-red-500 text-sm">{errors.email}</div>
           )}
         </div>
+        <div className="mb-2">
+          <label htmlFor="countryId" className="block text-sm font-bold">
+            Codigo de Telefono
+          </label>
+          <select
+            name="codePhone"
+            id="codePhone"
+            onChange={handleInputChange}
+            value={formData.codePhone}
+            className={`p-3 rounded-md text-black border-2 w-full ${
+              errors.phoneCode
+                ? "border-red-500"
+                : "border-gray-300 focus:border-blue-500"
+            }`}
+          >
+            <option value="" disabled>
+              Seleccione un codigo de Pais
+            </option>
+
+            {countries.map((countries) => (
+              <option key={countries.id} value={countries.id}>
+                {countries.phoneCode}
+              </option>
+            ))}
+          </select>
+          {errors.phoneCode && (
+            <div className="text-red-500 text-sm">{errors.countryId}</div>
+          )}
+        </div>
 
         <div className="mb-2">
           <label htmlFor="phone" className="block text-sm font-bold">
-            Teléfono
+            Teléfono ({codePhone})
           </label>
           <input
             type="text"

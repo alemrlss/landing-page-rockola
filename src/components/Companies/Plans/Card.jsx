@@ -65,7 +65,7 @@ function CardSubscription({ membership, onClick, setMembership, icon }) {
         </div>
         <p className="text-center text-sm my-2 font-mono">{membership.name}</p>
         <h2 className="text-3xl font-bold">
-          {membership.currency === "usd" ? "$" : "$"} {membership.amount}
+          {membership.currency === "usd" ? "$" : "$"} {membership.amount} USD
         </h2>
         <h5 className="text-sm">por establecimiento/mes facturado</h5>
         <div className="mt-6 space-y-2 flex flex-col">

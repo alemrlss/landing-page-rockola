@@ -16,7 +16,7 @@ const featuresCompany = [
   {
     title: "Cuentas de Empleados",
     description:
-      "Capacidad de crear cuentas de empleados para gestionar la venta de créditos y mejorar la experiencia del cliente.",
+      "Capacidad de crear cuentas de empleados para gestionar la adquision de Rockobits y mejorar la experiencia del cliente.",
     delay: 0.4,
     image: Image2,
   },

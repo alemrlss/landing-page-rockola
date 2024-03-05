@@ -12,11 +12,14 @@ function Register() {
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
+  const [phoneCodes, setPhoneCodes] = useState([]);
+
 
   useEffect(() => {
     const fetchCountries = async () => {
-      const response = await api.get("/country");
+      const response = await api.get("/country/selects");
       setCountries(response.data.data);
+      setPhoneCodes(response.data.data);
     };
 
     fetchCountries();
@@ -117,16 +120,18 @@ function Register() {
               setStates={setStates}
               cities={cities}
               setCities={setCities}
-            />
-          )}
+              phonecodes={phoneCodes}
+              />
+              )}
           {selectedType === "company" && (
             <FormCompanies
-              formVariants={formVariants}
-              countries={countries}
-              states={states}
-              cities={cities}
-              setCities={setCities}
-              setStates={setStates}
+            formVariants={formVariants}
+            countries={countries}
+            states={states}
+            cities={cities}
+            setCities={setCities}
+            setStates={setStates}
+            phonecodes={phoneCodes}
             />
           )}
         </div>
